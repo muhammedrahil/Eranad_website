@@ -20,6 +20,7 @@ Author URL: http://w3layouts.com
     <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
     <!-- Template CSS Style link -->
     <link rel="stylesheet" href="assets/css/style-starter.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -122,7 +123,7 @@ Author URL: http://w3layouts.com
                 <div class="col-md-6 section-heading mt-md-0 mt-2">
                     <h2 style="color: rgb(190, 146, 146); font-weight: bold;">
                         Shaping <span style="font-size: 22px;color: rgb(56, 48, 48);">Tomorrow </span> with
-                        <span style="font-size: 22px;color:  rgb(56, 48, 48);">Innovation </span> 
+                        <span style="font-size: 22px;color:  rgb(56, 48, 48);">Innovation </span>
                     </h2>
                 </div>
             </div>
@@ -163,34 +164,34 @@ Author URL: http://w3layouts.com
             </div>
             <div class="contact-w3pvt-form mt-5 pt-lg-4">
 
-                <form method="post" class="w3layouts-contact-fm" action="https://formspree.io/f/mdorrgjd">
-                <!-- <form id="myForm"> -->
+                <!-- <form method="post" class="w3layouts-contact-fm" action="https://formspree.io/f/mdorrgjd"> -->
+                <form id="submit-form">
                     <div class="row main-cont-sec">
                         <div class="col-md-6 left-cont-contact">
                             <div class="form-group mb-3">
                                 <label for="w3lName">Your Name</label>
-                                <input class="form-control" type="text" name="Name" id="Name" placeholder=""
+                                <input class="form-control" type="text" name="name" id="name" placeholder=""
                                     required="">
                             </div>
                             <div class="form-group mb-3">
                                 <label for="w3lSender">Your Email</label>
-                                <input class="form-control" type="email" name="Email" id="Email" placeholder=""
+                                <input class="form-control" type="email" name="email" id="email" placeholder=""
                                     required="">
                             </div>
                             <div class="form-group mb-3">
                                 <label for="w3lPhone">phone no</label>
-                                <input class="form-control" type="tel" name="Phone" id="Phone" placeholder=""
+                                <input class="form-control" type="tel" name="phone" id="phone" placeholder=""
                                     required="">
                             </div>
                             <div class="form-group mb-3">
                                 <label for="w3lSubject">Subject</label>
-                                <input class="form-control" type="text" name="Subject" id="Subject" required="">
+                                <input class="form-control" type="text" name="subject" id="subject" required="">
                             </div>
                         </div>
                         <div class="col-md-6 right-cont-contact">
                             <div class="form-group">
                                 <label for="w3lSubject">Write Message</label>
-                                <textarea class="form-control" name="Message" id="Message" placeholder=""
+                                <textarea class="form-control" name="message" id="Message" placeholder=""
                                     required=""></textarea>
                             </div>
                         </div>
@@ -201,59 +202,25 @@ Author URL: http://w3layouts.com
                 </form>
 
                 <script>
+                    $("#submit-form").submit((e) => {
+                        console.log("fooo")
+                        e.preventDefault()
+                        $.ajax({
+                            url: "https://script.google.com/macros/s/AKfycbzHn6GVqT3nqYTGWtH1A4Tn-9wM-zAH7ig9zYfG4yeDVJ6H7Xlnps-QpPnach7AkXVo/exec",
+                            data: $("#submit-form").serialize(),
+                            method: "post",
+                            success: function (response) {
+                                alert("Form submitted successfully")
+                                window.location.reload()
+                                //window.location.href="https://google.com"
+                            },
+                            error: function (err) {
+                                console.log(err)
 
-                    function submitForm() {
-                        // const form = document.getElementById('myForm');
-                        // const formData = new FormData(form);
-                        // console.log(formData)
-
-                        // // Replace 'YOUR_FORM_ID' with the actual ID of your Google Form
-                        // const formId = '1FAIpQLSeRWNyLbKFOddM1a5WnF2c1SfW1cnw0sPqiSvYTfDbEh33OZg';
-
-                        // // Replace 'YOUR_API_KEY' with your Google API Key
-                        // const apiKey = 'AIzaSyByzsKFMuAGJl77fIt-oSicOLxdAnFvmrg';
-                        // forms.googleapis.com
-
-                        // const apiUrl = `https://docs.google.com/forms/d/e/${formId}/formResponse?key=${apiKey}`;
-
-                        // fetch(apiUrl, {
-                        //     method: 'POST',
-                        //     body: formData,
-                        // })
-                        //     .then(response => {
-                        //         // if (!response.ok) {
-                        //         //     throw new Error('Network response was not ok');
-                        //         // }
-                        //         console.log(response)
-                        //         alert('Form submitted successfully!');
-                        //         // You can redirect or perform other actions upon successful submission
-                        //     })
-                        //     .catch(error => {
-                        //         console.log(error);
-                        //     });
-
-
-
-                        const CLIENT_ID = '264034198523-9t2mn5pvsf52i1g8hd1hq339qblo7ovl.apps.googleusercontent.com';
-                        const name = document.getElementById('Name').value;
-                        const email = document.getElementById('Email').value;
-                        const subject = document.getElementById('Subject').value;
-                        const message = document.getElementById('Message').value;
-                        gapi.load('forms:v1', () => {
-                            gapi.auth.authorize({
-                                client_id: CLIENT_ID,
-                                scope: ['https://www.googleapis.com/auth/forms.submit','http://http://127.0.0.1:5501'],
-                            }, (authResult) => {
-                                if (authResult && authResult.access_token) {
-                                    console.log(authResult)
-                                   
-                                } else {
-                                    console.error('Failed to authorize Google Forms API:', authResult);
-                                }
-                            });
+                            }
                         })
+                    })
 
-                    }
                 </script>
             </div>
         </div>
@@ -283,8 +250,8 @@ Author URL: http://w3layouts.com
                     </a>
                     <div class="columns-2">
                         <ul class="social">
-                            <li><a href="#"
-                                    title="facebook"><span class="fab fa-facebook-f" aria-hidden="true"></span></a>
+                            <li><a href="#" title="facebook"><span class="fab fa-facebook-f"
+                                        aria-hidden="true"></span></a>
                             </li>
                             <li><a href="#linkedin" title="linkedin"><span class="fab fa-linkedin-in"
                                         aria-hidden="true"></span></a>
@@ -295,8 +262,8 @@ Author URL: http://w3layouts.com
                             <li><a href="#google" title="google"><span class="fab fa-google-plus-g"
                                         aria-hidden="true"></span></a>
                             </li>
-                            <li><a href="#"
-                                    title="instagram"><span class="fab fa-instagram" aria-hidden="true"></span></a>
+                            <li><a href="#" title="instagram"><span class="fab fa-instagram"
+                                        aria-hidden="true"></span></a>
                             </li>
                         </ul>
                     </div>
@@ -406,7 +373,7 @@ Author URL: http://w3layouts.com
     <!-- //move top -->
 
     <!-- common jquery plugin -->
-    <script src="assets/js/jquery-3.3.1.min.js"></script>
+    <!-- <script src="assets/js/jquery-3.3.1.min.js"></script> -->
     <!-- //common jquery plugin -->
 
     <!-- theme switch js (light and dark)-->
@@ -491,8 +458,10 @@ Author URL: http://w3layouts.com
 
     <!--bootstrap-->
     <script src="assets/js/bootstrap.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> -->
     <!-- //bootstrap-->
     <!-- //Js scripts -->
 </body>
+<!-- https://script.google.com/macros/s/AKfycbzHn6GVqT3nqYTGWtH1A4Tn-9wM-zAH7ig9zYfG4yeDVJ6H7Xlnps-QpPnach7AkXVo/exec -->
 
 </html>
