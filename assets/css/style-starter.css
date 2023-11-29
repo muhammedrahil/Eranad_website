@@ -12273,7 +12273,7 @@ button.search-btn:hover {
   .cont-ser-position {
     position: absolute;
     right: 50px;
-    top: 8px;
+    /* top: 8px; */
   }
 
   .navbar {
